@@ -55,8 +55,10 @@ while True:
             artist = input("Artist Name: ")
             album = input("Album Name: ")
             searchResults = spotifyObject.search(q="artist:" + artist + " album:" + album + " track:" + searchQuery, limit=1, type="track")
+            print(json.dumps(searchResults, sort_keys=True, indent=4))
             track = searchResults['tracks']['items'][0]
             trackID = track['id']
+            print(trackID)
             trackIDs.append(trackID)
 
         #Storing track ids from json in list for albums and playlists
@@ -68,6 +70,8 @@ while True:
             trackIDs = []
             for items in trackIDsJSON['items']:
                 trackIDs.append(items['id'])
+
+        print(trackIDs)
 
         #Finding valence and energy of each track and the playlist total
         valenceTotal = 0
